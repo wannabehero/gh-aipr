@@ -13,7 +13,10 @@ import (
 )
 
 func getTitleAndBody(commits []string, diff string, template string, ctx context.Context) (*string, *string) {
+	stop := utils.StartLoader("Generating description...")
 	title, body := llm.GenerateTitleAndBody(commits, diff, template, ctx)
+	stop()
+	fmt.Println()
 
 	if title == nil {
 		if defaultTitle := git.GenerateTitle(commits); defaultTitle != nil {

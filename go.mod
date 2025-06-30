@@ -6,8 +6,11 @@ require (
 	github.com/anthropics/anthropic-sdk-go v0.2.0-beta.3
 	github.com/google/generative-ai-go v0.19.0
 	github.com/invopop/jsonschema v0.13.0
-	github.com/openai/openai-go v0.1.0-beta.10
-	github.com/spf13/viper v1.20.1
+       github.com/openai/openai-go v0.1.0-beta.10
+       github.com/charmbracelet/bubbletea v0.25.0
+       github.com/charmbracelet/bubbles v0.15.0
+       github.com/charmbracelet/lipgloss v0.9.0
+       github.com/spf13/viper v1.20.1
 	google.golang.org/api v0.228.0
 )
 
