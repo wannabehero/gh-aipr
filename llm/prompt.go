@@ -27,7 +27,7 @@ PR Template:
 
 const USER_PROMPT = `
 Using the following commit messages and a diff as a context
-generate a descriptive consise Pull Request title and body that summarizes the changes.
+generate a descriptive concise Pull Request title and body that summarizes the changes.
 
 For the title include an emoji that describes the context to the start.
 
@@ -44,14 +44,14 @@ Diff:
 `
 
 func getUserPrompt(commits []string, diff string, prTemplate string) string {
-	var prTermplatePrompt string
+	var prTemplatePrompt string
 	if prTemplate != "" {
-		prTermplatePrompt = fmt.Sprintf(BODY_TEMPLATE_PROMPT, prTemplate)
+		prTemplatePrompt = fmt.Sprintf(BODY_TEMPLATE_PROMPT, prTemplate)
 	} else {
-		prTermplatePrompt = ""
+		prTemplatePrompt = ""
 	}
 
-	prompt := fmt.Sprintf(USER_PROMPT, prTermplatePrompt, strings.Join(commits, "\n"), diff)
+	prompt := fmt.Sprintf(USER_PROMPT, prTemplatePrompt, strings.Join(commits, "\n"), diff)
 	return prompt
 }
 
