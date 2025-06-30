@@ -2,7 +2,7 @@
 
 There're some sensible defaults configured for the tool.
 
-Check [defaults.go](../config/defaults.go) for mode details.
+Check [defaults.go](../config/defaults.go) for more details.
 
 ## Global Configuration
 

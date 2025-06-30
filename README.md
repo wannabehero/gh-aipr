@@ -1,6 +1,6 @@
 # gh-aipr
 
-Github CLI extension to generate pull requests titles and descriptions
+GitHub CLI extension to generate pull request titles and descriptions
 based on your current branch commits and the diff.
 
 ## Installation
