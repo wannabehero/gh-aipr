@@ -56,7 +56,7 @@ func main() {
 
 	ctx := context.Background()
 
-	stop := utils.StartLoader("Generating description...")
+	stop := utils.StartLoader("Contemplating...")
 	title, body := getTitleAndBody(commits, diff, template, ctx)
 	stop()
 

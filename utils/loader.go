@@ -16,7 +16,7 @@ type loaderModel struct {
 func newLoaderModel(text string) loaderModel {
 	s := spinner.New()
 	s.Spinner = spinner.Dot
-	s.Style = lipgloss.NewStyle().Foreground(lipgloss.Color("205"))
+	s.Style = lipgloss.NewStyle().Foreground(lipgloss.Color("86"))
 	return loaderModel{spinner: s, text: text}
 }
 
@@ -45,12 +45,18 @@ func (m loaderModel) View() string {
 // StartLoader runs the spinner asynchronously and returns a function to stop it.
 func StartLoader(text string) func() {
 	program := tea.NewProgram(newLoaderModel(text))
+	done := make(chan struct{})
+
 	go func() {
+		defer close(done)
 		// ignore errors so loader doesn't block main flow
 		_, _ = program.Run()
 	}()
+
 	return func() {
-		program.Quit()
-		fmt.Println()
+		program.Send(doneMsg{})
+		<-done
+		// Clear the line by moving cursor to beginning and clearing
+		fmt.Print("\r\033[K")
 	}
 }
