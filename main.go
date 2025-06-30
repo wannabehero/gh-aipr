@@ -55,7 +55,10 @@ func main() {
 	args := []string{"pr", "create"}
 
 	ctx := context.Background()
+
+	stop := utils.StartLoader("Contemplating...")
 	title, body := getTitleAndBody(commits, diff, template, ctx)
+	stop()
 
 	if title != nil {
 		args = append(args, "--title", *title)
