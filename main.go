@@ -13,9 +13,7 @@ import (
 )
 
 func getTitleAndBody(commits []string, diff string, template string, ctx context.Context) (*string, *string) {
-	stop := utils.StartLoader("Generating description...")
 	title, body := llm.GenerateTitleAndBody(commits, diff, template, ctx)
-	stop()
 
 	if title == nil {
 		if defaultTitle := git.GenerateTitle(commits); defaultTitle != nil {
@@ -57,7 +55,10 @@ func main() {
 	args := []string{"pr", "create"}
 
 	ctx := context.Background()
+
+	stop := utils.StartLoader("Generating description...")
 	title, body := getTitleAndBody(commits, diff, template, ctx)
+	stop()
 
 	if title != nil {
 		args = append(args, "--title", *title)
