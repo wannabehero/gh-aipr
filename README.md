@@ -37,16 +37,6 @@ programs.gh = {
 };
 ```
 
-Or install directly:
-
-```bash
-# Build and run once
-nix run github:wannabehero/gh-aipr
-
-# Install to profile
-nix profile install github:wannabehero/gh-aipr
-```
-
 ## Configuration
 
 To make the best use of the tool set one of the following:
