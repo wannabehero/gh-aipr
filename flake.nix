@@ -6,9 +6,15 @@
     flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs, flake-utils }:
-    let 
-      gh-aipr = { pkgs, ... }:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      flake-utils,
+    }:
+    let
+      gh-aipr =
+        { pkgs, ... }:
         pkgs.buildGoModule rec {
           pname = "gh-aipr";
           version = "unstable-" + (self.shortRev or "dev");
@@ -17,13 +23,17 @@
 
           vendorHash = "sha256-fUYTwKAjVV8g5Tc/bR1W2QoCownCRVr8zbZb77dg+YQ=";
 
-          ldflags = [ "-s" "-w" ];
+          ldflags = [
+            "-s"
+            "-w"
+          ];
           env.CGO_ENABLED = 0;
 
           subPackages = [ "." ];
         };
     in
-    flake-utils.lib.eachDefaultSystem (system:
+    flake-utils.lib.eachDefaultSystem (
+      system:
       let
         pkgs = import nixpkgs { inherit system; };
       in
@@ -44,11 +54,10 @@
 
         formatter = pkgs.nixfmt-rfc-style;
       }
-    ) // {
+    )
+    // {
       overlays.pkgs = final: prev: {
         gh-aipr = prev.callPackage gh-aipr { pkgs = prev; };
       };
     };
 }
-
-
