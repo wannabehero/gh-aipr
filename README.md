@@ -24,7 +24,7 @@ inputs.gh-aipr.url = "github:wannabehero/gh-aipr";
 # when constructing pkgs
 pkgs = import nixpkgs {
   inherit system;
-  overlays = [ gh-aipr.overlays.default ];
+  overlays = [ gh-aipr.overlays.pkgs ];
 };
 ```
 
