@@ -5,10 +5,36 @@ based on your current branch commits and the diff.
 
 ## Installation
 
+### GitHub CLI Extension
+
 Make sure the CLI is installed: https://cli.github.com/
 
 ```
 gh extension install wannabehero/gh-aipr
+```
+
+### Nix (Home Manager)
+
+If using flakes, enable the overlay so `pkgs.gh-aipr` is available:
+
+```nix
+# flake inputs
+inputs.gh-aipr.url = "github:wannabehero/gh-aipr";
+
+# when constructing pkgs
+pkgs = import nixpkgs {
+  inherit system;
+  overlays = [ gh-aipr.overlays.pkgs ];
+};
+```
+
+Then in your Home Manager configuration:
+
+```nix
+programs.gh = {
+  enable = true;
+  extensions = [ pkgs.gh-aipr ];
+};
 ```
 
 ## Configuration
